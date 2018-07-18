@@ -18,7 +18,6 @@ export class XMLFileReader {
                 this.saveXML(this.itemsActions.changeQuantity(result));
                 this.editorService.itemList.next(result.items.item);
             });
-
         });
     }
 
