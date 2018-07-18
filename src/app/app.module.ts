@@ -4,15 +4,19 @@ import {AppComponent} from './app.component';
 import {NgxElectronModule} from "ngx-electron";
 import {EditorService} from "./editor.service";
 import {BoilerplateComponent} from "./boilerplate/boilerplate.component";
+import {TestComponent} from "./test/test.component";
+import {AppRoutingModule} from "./routing.module";
 
 @NgModule({
     imports: [
         BrowserModule,
-        NgxElectronModule
+        NgxElectronModule,
+        AppRoutingModule
     ],
     declarations: [
         AppComponent,
-        BoilerplateComponent
+        BoilerplateComponent,
+        TestComponent
     ],
     bootstrap: [AppComponent],
     providers: [EditorService]
