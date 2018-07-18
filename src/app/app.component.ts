@@ -1,26 +1,39 @@
-import { Component } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import * as Electron from "electron";
 import {ElectronService} from "ngx-electron";
 import {XMLFileReader} from "./XMLFileReader";
+import {EditorService} from "./editor.service";
 
 @Component({
     selector: 'demo-app',
     templateUrl: require('./app.component.html'),
     styleUrls: [require('./app.component.scss')]
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
 
-    fileReader = new XMLFileReader();
+    fileReader = new XMLFileReader(this.editorService);
+    items;
 
-    constructor(private _electronService: ElectronService) {
+    constructor(private _electronService: ElectronService,
+                private editorService: EditorService,
+                private ref: ChangeDetectorRef) {
 
     }
 
     fileDialog() {
-        this._electronService.remote.dialog.showOpenDialog({
-            properties: ['openFile']
-        }, (file) => {
-            this.fileReader.readFile(file[0]);
+        this.fileReader.readFile('');
+        // this._electronService.remote.dialog.showOpenDialog({
+        //     properties: ['openFile']
+        // }, (file) => {
+        //     this.fileReader.readFile(file[0]);
+        // });
+    }
+
+    ngOnInit(): void {
+        this.editorService.itemList.subscribe(list => {
+            console.log(list);
+            this.items = list;
+            this.ref.detectChanges();
         });
     }
 }
