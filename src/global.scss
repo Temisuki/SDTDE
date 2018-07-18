@@ -8,3 +8,15 @@
 body{
   font-family: 'Raleway', sans-serif;
 }
+
+.tile {
+  background-color: red;
+  height: 50vh;
+  padding: 0 !important;
+  border: 1px solid white;
+}
+
+.tile-button {
+  height: 100%;
+  width: 100%;
+}

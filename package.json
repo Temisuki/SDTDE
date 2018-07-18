@@ -61,8 +61,8 @@
     "electron-winstaller": "^2.6.4"
   },
   "dependencies": {
-    "@angular/cdk": "^6.4.0",
     "@angular/animations": "^4.0.1",
+    "@angular/cdk": "^6.4.0",
     "@angular/common": "^6.0.9",
     "@angular/compiler": "^6.0.9",
     "@angular/core": "^6.0.9",
@@ -75,6 +75,7 @@
     "@types/xml2json": "^0.10.0",
     "angular-in-memory-web-api": "^0.6.0",
     "autoprefixer": "^9.0.0",
+    "bootstrap": "^4.1.2",
     "core-js": "^2.5.7",
     "electron": "^2.0.5",
     "ngx-electron": "^1.0.4",

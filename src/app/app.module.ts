@@ -11,13 +11,14 @@ import {ItemsComponent} from "./items/items.component";
 import {NavigatorService} from "./navigator.service";
 import {MenuComponent} from "./menu/menu.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatButtonModule} from "@angular/material";
+import {MatButtonModule, MatGridListModule} from "@angular/material";
 
 @NgModule({
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
         MatButtonModule,
+        MatGridListModule,
         NgxElectronModule,
         AppRoutingModule
     ],
