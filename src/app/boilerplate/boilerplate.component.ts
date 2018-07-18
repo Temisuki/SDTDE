@@ -6,6 +6,8 @@ import {Component, OnInit} from "@angular/core";
     styleUrls: [require('./boilerplate.component.scss')]
 })
 export class BoilerplateComponent implements OnInit {
+
     ngOnInit(): void {
     }
+
 }

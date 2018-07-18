@@ -13,7 +13,6 @@ import {BoilerplateComponent} from "./boilerplate/boilerplate.component";
     declarations: [
         AppComponent,
         BoilerplateComponent
-
     ],
     bootstrap: [AppComponent],
     providers: [EditorService]
