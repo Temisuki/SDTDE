@@ -1,4 +1,5 @@
 import {Component, OnInit} from "@angular/core";
+import {NavigatorService} from "../navigator.service";
 
 @Component({
     selector: 'boilerplate-app',
@@ -7,8 +8,8 @@ import {Component, OnInit} from "@angular/core";
 })
 export class BoilerplateComponent implements OnInit {
 
+    constructor(private navigator: NavigatorService) { }
     ngOnInit(): void {
     }
-
 
 }
