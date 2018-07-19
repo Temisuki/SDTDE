@@ -13,6 +13,9 @@ import {MenuComponent} from "./menu/menu.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatButtonModule, MatGridListModule} from "@angular/material";
 import {ServerSettingsComponent} from "./server-settings/server-settings.component";
+import {BsDropdownModule} from "ngx-bootstrap";
+import {FormsModule} from "@angular/forms";
+import {EnumToArrayPipe} from "./enum-to-array.pipe";
 
 @NgModule({
     imports: [
@@ -21,7 +24,9 @@ import {ServerSettingsComponent} from "./server-settings/server-settings.compone
         MatButtonModule,
         MatGridListModule,
         NgxElectronModule,
-        AppRoutingModule
+        AppRoutingModule,
+        FormsModule,
+        BsDropdownModule.forRoot()
     ],
     declarations: [
         AppComponent,
@@ -31,6 +36,7 @@ import {ServerSettingsComponent} from "./server-settings/server-settings.compone
         ServerSettingsComponent,
         MenuComponent,
         ItemsComponent,
+        EnumToArrayPipe
     ],
     bootstrap: [AppComponent],
     providers: [EditorService, NavigatorService]

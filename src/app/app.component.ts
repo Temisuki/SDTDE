@@ -11,7 +11,7 @@ import {EditorService} from "./editor.service";
 })
 export class AppComponent implements OnInit{
 
-    fileReader = new XMLFileReader(this.editorService);
+    fileReader = new XMLFileReader();
     items;
 
     constructor(private _electronService: ElectronService,
@@ -21,7 +21,7 @@ export class AppComponent implements OnInit{
     }
 
     fileDialog() {
-        this.fileReader.readFile('');
+        // this.fileReader.readFile('');
         // this._electronService.remote.dialog.showOpenDialog({
         //     properties: ['openFile']
         // }, (file) => {

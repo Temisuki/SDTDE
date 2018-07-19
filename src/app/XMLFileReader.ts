@@ -1,22 +1,22 @@
 import * as fs from "fs";
 import {parseString, Builder} from 'xml2js';
 import {ItemsActions} from "./ItemsActions";
-import {EditorService} from "./editor.service";
 
 export class XMLFileReader {
 
     parser;
     itemsActions = new ItemsActions();
 
-    constructor(private editorService: EditorService) {
+    constructor() {
         this.parser = new DOMParser();
     }
 
-    readFile(path: string) {
-        fs.readFile('C:\\Users\\Mateusz\\Desktop\\server.xml', 'utf8', (err, data) => {
+    readFile(path: string, callback: (XML: any) => any) {
+        fs.readFile('C:\\Users\\Mateusz\\Desktop\\serverconfig.xml', 'utf8', (err, data) => {
             parseString(data, (err, result) => {
-                this.saveXML(this.itemsActions.changeQuantity(result));
-                this.editorService.itemList.next(result.items.item);
+                callback(result);
+                // this.saveXML(this.itemsActions.changeQuantity(result));
+                // this.editorService.itemList.next(result.items.item);
             });
         });
     }
