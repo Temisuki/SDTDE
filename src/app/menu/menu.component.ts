@@ -25,6 +25,6 @@ export class MenuComponent implements OnInit {
     }
 
     gotoServer() {
-        this.navigator.goTo(links.Items);
+        this.navigator.goTo(links.Server);
     }
 }

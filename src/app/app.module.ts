@@ -12,6 +12,7 @@ import {NavigatorService} from "./navigator.service";
 import {MenuComponent} from "./menu/menu.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatButtonModule, MatGridListModule} from "@angular/material";
+import {ServerSettingsComponent} from "./server-settings/server-settings.component";
 
 @NgModule({
     imports: [
@@ -27,6 +28,7 @@ import {MatButtonModule, MatGridListModule} from "@angular/material";
         BoilerplateComponent,
         TestComponent,
         MainComponent,
+        ServerSettingsComponent,
         MenuComponent,
         ItemsComponent,
     ],

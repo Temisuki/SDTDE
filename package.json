@@ -61,7 +61,7 @@
     "electron-winstaller": "^2.6.4"
   },
   "dependencies": {
-    "@angular/animations": "^4.0.1",
+    "@angular/animations": "^6.0.9",
     "@angular/cdk": "^6.4.0",
     "@angular/common": "^6.0.9",
     "@angular/compiler": "^6.0.9",

@@ -13,7 +13,7 @@ export class XMLFileReader {
     }
 
     readFile(path: string) {
-        fs.readFile('C:\\Users\\Mateusz\\Desktop\\items.xml', 'utf8', (err, data) => {
+        fs.readFile('C:\\Users\\Mateusz\\Desktop\\server.xml', 'utf8', (err, data) => {
             parseString(data, (err, result) => {
                 this.saveXML(this.itemsActions.changeQuantity(result));
                 this.editorService.itemList.next(result.items.item);
