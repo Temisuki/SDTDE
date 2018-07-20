@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import {parseString, Builder} from 'xml2js';
 import {ItemsActions} from "./ItemsActions";
+import swal from 'sweetalert2'
 
 export class XMLFileReader {
 
@@ -21,9 +22,13 @@ export class XMLFileReader {
         });
     }
 
-    saveXML(data) {
+    saveXML(xml, path: string) {
         const builder = new Builder();
-        const xml = builder.buildObject(this.itemsActions.changeQuantity(data));
-        fs.writeFile('xml.xml', xml, () => {});
+        fs.writeFile(path, builder.buildObject(xml), () => {
+            swal({
+                type: "success",
+                title: 'File saved successfuly'
+            })
+        });
     }
 }

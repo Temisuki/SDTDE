@@ -35,6 +35,7 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
     ngOnInit(): void {
         this.xmlFileReader = new XMLFileReader();
         UtilityScripts.openFileDialog(this.electronService, (path) => {
+            this.XMLPath = path;
             this.readFile(path);
         });
         // ServerSettings.spawnProcess();
@@ -45,6 +46,10 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
             this.serverXML = XML;
             this.ref.detectChanges();
         });
+    }
+
+    saveXML() {
+        this.xmlFileReader.saveXML(this.serverXML, this.XMLPath);
     }
 
     getTypeOfDirective(name, value) {
