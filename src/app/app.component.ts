@@ -14,7 +14,7 @@ export class AppComponent implements OnInit{
     fileReader = new XMLFileReader();
     items;
 
-    constructor(private _electronService: ElectronService,
+    constructor(private electronService: ElectronService,
                 private editorService: EditorService,
                 private ref: ChangeDetectorRef) {
 
