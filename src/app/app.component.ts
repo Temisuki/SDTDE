@@ -11,17 +11,17 @@ import {EditorService} from "./editor.service";
 })
 export class AppComponent implements OnInit{
 
-    fileReader = new XMLFileReader(this.editorService);
+    fileReader = new XMLFileReader();
     items;
 
-    constructor(private _electronService: ElectronService,
+    constructor(private electronService: ElectronService,
                 private editorService: EditorService,
                 private ref: ChangeDetectorRef) {
 
     }
 
     fileDialog() {
-        this.fileReader.readFile('');
+        // this.fileReader.readFile('');
         // this._electronService.remote.dialog.showOpenDialog({
         //     properties: ['openFile']
         // }, (file) => {

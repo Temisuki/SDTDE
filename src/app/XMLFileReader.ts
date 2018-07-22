@@ -1,29 +1,34 @@
 import * as fs from "fs";
 import {parseString, Builder} from 'xml2js';
 import {ItemsActions} from "./ItemsActions";
-import {EditorService} from "./editor.service";
+import swal from 'sweetalert2'
 
+// TODO: Enum with basic filenames
 export class XMLFileReader {
 
-    parser;
-    itemsActions = new ItemsActions();
+    parser: DOMParser;
 
-    constructor(private editorService: EditorService) {
+    constructor() {
         this.parser = new DOMParser();
     }
 
-    readFile(path: string) {
-        fs.readFile('C:\\Users\\Mateusz\\Desktop\\server.xml', 'utf8', (err, data) => {
+    readFile(path: string, callback: (XML: any) => any) {
+        fs.readFile('C:\\Users\\Mateusz\\Desktop\\serverconfig.xml', 'utf8', (err, data) => {
             parseString(data, (err, result) => {
-                this.saveXML(this.itemsActions.changeQuantity(result));
-                this.editorService.itemList.next(result.items.item);
+                callback(result);
+                // this.saveXML(this.itemsActions.changeQuantity(result));
+                // this.editorService.itemList.next(result.items.item);
             });
         });
     }
 
-    saveXML(data) {
+    saveXML(xml, path: string) {
         const builder = new Builder();
-        const xml = builder.buildObject(this.itemsActions.changeQuantity(data));
-        fs.writeFile('xml.xml', xml, () => {});
+        fs.writeFile(path, builder.buildObject(xml), () => {
+            swal({
+                type: "success",
+                title: 'File saved successfuly'
+            })
+        });
     }
 }
