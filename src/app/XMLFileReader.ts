@@ -3,10 +3,10 @@ import {parseString, Builder} from 'xml2js';
 import {ItemsActions} from "./ItemsActions";
 import swal from 'sweetalert2'
 
+// TODO: Enum with basic filenames
 export class XMLFileReader {
 
-    parser;
-    itemsActions = new ItemsActions();
+    parser: DOMParser;
 
     constructor() {
         this.parser = new DOMParser();
