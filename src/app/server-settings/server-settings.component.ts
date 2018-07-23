@@ -67,6 +67,7 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
     }
 
     getTypeOfDirective(name, value) {
+        if(value === '') return TypeOfValue.String;
         if (name === 'GameDifficulty') return TypeOfValue.Difficulty;
         if (name === 'ZombiesRun') return TypeOfValue.ZombiesRun;
         if (name === 'GameWorld') return TypeOfValue.GameWorld;

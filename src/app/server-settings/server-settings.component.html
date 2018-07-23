@@ -79,10 +79,10 @@
         <td *ngSwitchCase="TypeOfValue.GameWorld">
             <div class="btn-group" (onShown)="detectChanges()" (onHidden)="detectChanges()" dropdown #dropdown="bs-dropdown" [autoClose]="false">
                 <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
-                    {{property.$.value}} <span class="caret"></span>
+                    {{property.$.value | splitWords}} <span class="caret"></span>
                 </button>
                 <ul  *dropdownMenu class="dropdown-menu" role="menu">
-                    <li *ngFor="let gameWorld of GameWorld | enumToArray" role="menuitem"><a class="dropdown-item" (click)="dropdown.hide(); setGameWorld(gameWorld, propertyIndex)">{{gameWorld}}</a></li>
+                    <li *ngFor="let gameWorld of GameWorld | enumToArray" role="menuitem"><a class="dropdown-item" (click)="dropdown.hide(); setGameWorld(gameWorld, propertyIndex)">{{gameWorld | splitWords}}</a></li>
                 </ul>
             </div>
         </td>
