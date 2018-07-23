@@ -26,6 +26,66 @@
                 </ul>
             </div>
         </td>
+        <td *ngSwitchCase="TypeOfValue.ZombiesRun">
+            <div class="btn-group" (onShown)="detectChanges()" (onHidden)="detectChanges()" dropdown #dropdown="bs-dropdown" [autoClose]="false">
+                <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+                    {{ZombiesRun[property.$.value] | splitWords}} <span class="caret"></span>
+                </button>
+                <ul  *dropdownMenu class="dropdown-menu" role="menu">
+                    <li *ngFor="let zombiesRun of ZombiesRun | enumToArray" role="menuitem"><a class="dropdown-item" (click)="dropdown.hide(); setZombiesRun(zombiesRun, propertyIndex)">{{zombiesRun | splitWords}}</a></li>
+                </ul>
+            </div>
+        </td>
+        <td *ngSwitchCase="TypeOfValue.PlayerKillingMode">
+            <div class="btn-group" (onShown)="detectChanges()" (onHidden)="detectChanges()" dropdown #dropdown="bs-dropdown" [autoClose]="false">
+                <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+                    {{PlayerKillingMode[property.$.value] | splitWords}} <span class="caret"></span>
+                </button>
+                <ul  *dropdownMenu class="dropdown-menu" role="menu">
+                    <li *ngFor="let playerKillingMode of PlayerKillingMode | enumToArray" role="menuitem"><a class="dropdown-item" (click)="dropdown.hide(); setPlayerKillingMode(playerKillingMode, propertyIndex)">{{playerKillingMode | splitWords}}</a></li>
+                </ul>
+            </div>
+        </td>
+        <td *ngSwitchCase="TypeOfValue.EnemyDifficulty">
+            <div class="btn-group" (onShown)="detectChanges()" (onHidden)="detectChanges()" dropdown #dropdown="bs-dropdown" [autoClose]="false">
+                <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+                    {{EnemyDifficulty[property.$.value]}} <span class="caret"></span>
+                </button>
+                <ul  *dropdownMenu class="dropdown-menu" role="menu">
+                    <li *ngFor="let enemyDifficulty of EnemyDifficulty | enumToArray" role="menuitem"><a class="dropdown-item" (click)="dropdown.hide(); setEnemyDifficulty(enemyDifficulty, propertyIndex)">{{enemyDifficulty}}</a></li>
+                </ul>
+            </div>
+        </td>
+        <td *ngSwitchCase="TypeOfValue.DropOnQuit">
+            <div class="btn-group" (onShown)="detectChanges()" (onHidden)="detectChanges()" dropdown #dropdown="bs-dropdown" [autoClose]="false">
+                <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+                    {{DropOnQuit[property.$.value] | splitWords}} <span class="caret"></span>
+                </button>
+                <ul  *dropdownMenu class="dropdown-menu" role="menu">
+                    <li *ngFor="let dropOnQuit of DropOnQuit | enumToArray" role="menuitem"><a class="dropdown-item" (click)="dropdown.hide(); setDropOnQuit(dropOnQuit, propertyIndex)">{{dropOnQuit | splitWords}}</a></li>
+                </ul>
+            </div>
+        </td>
+        <td *ngSwitchCase="TypeOfValue.DropOnDeath">
+            <div class="btn-group" (onShown)="detectChanges()" (onHidden)="detectChanges()" dropdown #dropdown="bs-dropdown" [autoClose]="false">
+                <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+                    {{DropOnDeath[property.$.value] | splitWords}} <span class="caret"></span>
+                </button>
+                <ul  *dropdownMenu class="dropdown-menu" role="menu">
+                    <li *ngFor="let dropOnDeath of DropOnDeath | enumToArray" role="menuitem"><a class="dropdown-item" (click)="dropdown.hide(); setDropOnDeath(dropOnDeath, propertyIndex)">{{dropOnDeath | splitWords}}</a></li>
+                </ul>
+            </div>
+        </td>
+        <td *ngSwitchCase="TypeOfValue.GameWorld">
+            <div class="btn-group" (onShown)="detectChanges()" (onHidden)="detectChanges()" dropdown #dropdown="bs-dropdown" [autoClose]="false">
+                <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+                    {{property.$.value}} <span class="caret"></span>
+                </button>
+                <ul  *dropdownMenu class="dropdown-menu" role="menu">
+                    <li *ngFor="let gameWorld of GameWorld | enumToArray" role="menuitem"><a class="dropdown-item" (click)="dropdown.hide(); setGameWorld(gameWorld, propertyIndex)">{{gameWorld}}</a></li>
+                </ul>
+            </div>
+        </td>
         <td *ngSwitchCase="TypeOfValue.Percentage">
             <div class="range-slider">
                 <input class="range-slider__range" type="range" [ngModelOptions]="{standalone: true}" (ngModelChange)="detectChanges()" [(ngModel)]="property.$.value" [value]="property?.$?.value" min="0" max="100">

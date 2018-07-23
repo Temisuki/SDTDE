@@ -10,7 +10,15 @@ import {
 import {NavigatorService} from "../navigator.service";
 import {XMLFileReader} from "../utility/XMLFileReader";
 import {isBoolean} from "ngx-bootstrap/chronos/utils/type-checks";
-import {Difficulty, ServerSettings, TypeOfValue} from "./server-settings";
+import {
+    Difficulty,
+    ServerSettings,
+    TypeOfValue,
+    EnemyDifficulty,
+    DropOnDeath,
+    DropOnQuit,
+    GameWorld, PlayerKillingMode, ZombiesRun
+} from "./server-settings";
 import {BsDropdownDirective} from "ngx-bootstrap";
 import {UtilityScripts} from "../utility/utility-scripts";
 import {ElectronService} from "ngx-electron";
@@ -26,6 +34,12 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
     XMLPath = '';
     TypeOfValue = TypeOfValue;
     Difficulty = Difficulty;
+    ZombiesRun = ZombiesRun;
+    EnemyDifficulty = EnemyDifficulty;
+    DropOnQuit = DropOnQuit;
+    DropOnDeath = DropOnDeath;
+    GameWorld = GameWorld;
+    PlayerKillingMode = PlayerKillingMode;
     getBooleanValue = ServerSettings.getBooleanValue;
     serverXML = null;
 
@@ -34,11 +48,10 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
                 private ref: ChangeDetectorRef) { }
     ngOnInit(): void {
         this.xmlFileReader = new XMLFileReader();
-        // UtilityScripts.openDirectoryDialog(this.electronService, (path) => {
-        //     console.log(path);
-        //     this.XMLPath = path;
-        //     this.readFile(path);
-        // });
+        UtilityScripts.openFileDialog(this.electronService, (path) => {
+            this.XMLPath = path;
+            this.readFile(path);
+        });
         // ServerSettings.spawnProcess();
     }
 
@@ -50,7 +63,7 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
     }
 
     saveXML() {
-        this.xmlFileReader.saveXML(this.serverXML, this.XMLPath);
+        // this.xmlFileReader.saveXML(this.serverXML, this.XMLPath);
     }
 
     getTypeOfDirective(name, value) {
@@ -80,6 +93,36 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
 
     setDifficulty(difficulty, index) {
         this.serverXML.ServerSettings.property[index].$.value = Difficulty[difficulty];
+        this.detectChanges();
+    }
+
+    setDropOnDeath(dropOnDeath, index) {
+        this.serverXML.ServerSettings.property[index].$.value = DropOnDeath[dropOnDeath];
+        this.detectChanges();
+    }
+
+    setDropOnQuit(dropOnQuit, index) {
+        this.serverXML.ServerSettings.property[index].$.value = DropOnQuit[dropOnQuit];
+        this.detectChanges();
+    }
+
+    setEnemyDifficulty(enemyDifficulty, index) {
+        this.serverXML.ServerSettings.property[index].$.value = EnemyDifficulty[enemyDifficulty];
+        this.detectChanges();
+    }
+
+    setZombiesRun(zombiesRun, index) {
+        this.serverXML.ServerSettings.property[index].$.value = ZombiesRun[zombiesRun];
+        this.detectChanges();
+    }
+
+    setGameWorld(gameWorld, index) {
+        this.serverXML.ServerSettings.property[index].$.value = gameWorld.match(/([A-Z]?[^A-Z]*)/g).slice(0,-1).join(' ');
+        this.detectChanges();
+    }
+
+    setPlayerKillingMode(playerKillingMode, index) {
+        this.serverXML.ServerSettings.property[index].$.value = PlayerKillingMode[playerKillingMode];
         this.detectChanges();
     }
 

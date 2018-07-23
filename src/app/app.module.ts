@@ -16,6 +16,8 @@ import {ServerSettingsComponent} from "./server-settings/server-settings.compone
 import {BsDropdownModule} from "ngx-bootstrap";
 import {FormsModule} from "@angular/forms";
 import {EnumToArrayPipe} from "./utility/enum-to-array.pipe";
+import {FirstLetterToUpperPipe} from "./utility/first-letter-to-upper.pipe";
+import {SplitWordsFromEnumPipe} from "./utility/split-words-from-enum.pipe";
 
 @NgModule({
     imports: [
@@ -36,7 +38,9 @@ import {EnumToArrayPipe} from "./utility/enum-to-array.pipe";
         ServerSettingsComponent,
         MenuComponent,
         ItemsComponent,
-        EnumToArrayPipe
+        EnumToArrayPipe,
+        FirstLetterToUpperPipe,
+        SplitWordsFromEnumPipe
     ],
     bootstrap: [AppComponent],
     providers: [EditorService, NavigatorService]

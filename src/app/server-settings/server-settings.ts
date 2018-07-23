@@ -67,6 +67,6 @@ export enum ZombiesRun {
 }
 
 export enum GameWorld {
-    Navezgane = 'Navezgane',
-    RandomGen = 'Random Gen'
+    Navezgane = 0,
+    RandomGen = 1
 }
