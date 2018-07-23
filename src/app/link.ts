@@ -4,3 +4,7 @@ export enum links {
     Quick = 'quick',
     Server = 'server'
 }
+
+export enum filePaths {
+    SERVERXML = '/serverconfig.xml',
+}

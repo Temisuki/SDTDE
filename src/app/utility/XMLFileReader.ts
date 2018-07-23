@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import {parseString, Builder} from 'xml2js';
-import {ItemsActions} from "./ItemsActions";
+import {ItemsActions} from "../ItemsActions";
 import swal from 'sweetalert2'
 
 // TODO: Enum with basic filenames

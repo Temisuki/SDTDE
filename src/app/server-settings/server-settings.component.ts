@@ -8,7 +8,7 @@ import {
     OnInit, ViewChild
 } from "@angular/core";
 import {NavigatorService} from "../navigator.service";
-import {XMLFileReader} from "../XMLFileReader";
+import {XMLFileReader} from "../utility/XMLFileReader";
 import {isBoolean} from "ngx-bootstrap/chronos/utils/type-checks";
 import {Difficulty, ServerSettings, TypeOfValue} from "./server-settings";
 import {BsDropdownDirective} from "ngx-bootstrap";
@@ -28,16 +28,17 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
     Difficulty = Difficulty;
     getBooleanValue = ServerSettings.getBooleanValue;
     serverXML = null;
-    lol = '';
+
     constructor(private navigator: NavigatorService,
                 private electronService: ElectronService,
                 private ref: ChangeDetectorRef) { }
     ngOnInit(): void {
         this.xmlFileReader = new XMLFileReader();
-        UtilityScripts.openFileDialog(this.electronService, (path) => {
-            this.XMLPath = path;
-            this.readFile(path);
-        });
+        // UtilityScripts.openDirectoryDialog(this.electronService, (path) => {
+        //     console.log(path);
+        //     this.XMLPath = path;
+        //     this.readFile(path);
+        // });
         // ServerSettings.spawnProcess();
     }
 
@@ -53,8 +54,13 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
     }
 
     getTypeOfDirective(name, value) {
-        if(value === '') return TypeOfValue.String;
         if (name === 'GameDifficulty') return TypeOfValue.Difficulty;
+        if (name === 'ZombiesRun') return TypeOfValue.ZombiesRun;
+        if (name === 'GameWorld') return TypeOfValue.GameWorld;
+        if (name === 'PlayerKillingMode') return TypeOfValue.PlayerKillingMode;
+        if (name === 'EnemyDifficulty') return TypeOfValue.EnemyDifficulty;
+        if (name === 'DropOnDeath') return TypeOfValue.DropOnDeath;
+        if (name === 'DropOnQuit') return TypeOfValue.DropOnQuit;
         if (name === 'LootAbundance' || name === 'BlockDurabilityModifier') return TypeOfValue.Percentage;
         const booleanType = this.getBooleanValue(value);
         if(isBoolean(booleanType)) {

@@ -16,7 +16,13 @@ export enum TypeOfValue {
     Number,
     String,
     Difficulty,
-    Percentage
+    Percentage,
+    ZombiesRun,
+    EnemyDifficulty,
+    DropOnDeath,
+    DropOnQuit,
+    PlayerKillingMode,
+    GameWorld
 }
 
 export enum Difficulty {
@@ -26,4 +32,41 @@ export enum Difficulty {
     Warrior = 3,
     Survivalist = 4,
     Insane = 5
+}
+
+export enum EnemyDifficulty {
+    Normal = 0,
+    Feral = 1
+}
+
+export enum DropOnDeath {
+    Everything = 0,
+    ToolbeltOnly = 1,
+    BackpackOnly = 2,
+    DeleteAll = 3
+}
+
+export enum DropOnQuit {
+    Nothing = 0,
+    Everything = 1,
+    ToolbeltOnly = 2,
+    BackpackOnly = 3
+}
+
+export enum PlayerKillingMode {
+    NoKilling = 0,
+    KillAlliesOnly = 1,
+    KillStrangersOnly = 2,
+    KillEveryone = 3
+}
+
+export enum ZombiesRun {
+    DayWalkNightRun = 0,
+    NeverRun = 1,
+    AlwaysRun = 2
+}
+
+export enum GameWorld {
+    Navezgane = 'Navezgane',
+    RandomGen = 'Random Gen'
 }

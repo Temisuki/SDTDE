@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import * as Electron from "electron";
 import {ElectronService} from "ngx-electron";
-import {XMLFileReader} from "./XMLFileReader";
+import {XMLFileReader} from "./utility/XMLFileReader";
 import {EditorService} from "./editor.service";
 
 @Component({

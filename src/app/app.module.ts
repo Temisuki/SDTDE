@@ -15,7 +15,7 @@ import {MatButtonModule, MatGridListModule} from "@angular/material";
 import {ServerSettingsComponent} from "./server-settings/server-settings.component";
 import {BsDropdownModule} from "ngx-bootstrap";
 import {FormsModule} from "@angular/forms";
-import {EnumToArrayPipe} from "./enum-to-array.pipe";
+import {EnumToArrayPipe} from "./utility/enum-to-array.pipe";
 
 @NgModule({
     imports: [
