@@ -13,7 +13,7 @@ export class XMLFileReader {
     }
 
     readFile(path: string, callback: (XML: any) => any) {
-        fs.readFile('C:\\Users\\Mateusz\\Desktop\\serverconfig.xml', 'utf8', (err, data) => {
+        fs.readFile(path, 'utf8', (err, data) => {
             parseString(data, (err, result) => {
                 callback(result);
                 // this.saveXML(this.itemsActions.changeQuantity(result));

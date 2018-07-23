@@ -1,5 +1,3 @@
-import {ElectronService} from "ngx-electron";
-
 export class UtilityScripts {
 
     static openFileDialog(electronService, callback: (path: string) => any) {

@@ -136,7 +136,6 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
 
 
     detectChanges() {
-        console.log('Detect changes');
         this.ref.detectChanges();
         setTimeout(() =>{
             this.ref.detectChanges();
