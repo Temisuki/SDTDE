@@ -1,0 +1,42 @@
+.navigation
+{
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index:2;
+}
+
+mat-toolbar {
+  background: #2D2E2E;
+
+  mat-toolbar-row {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    mat-nav-list {
+
+      a {
+        color: #fff;
+        padding: 0 20px;
+        display: inline-block;
+      }
+      .activated {
+        background-color: #F2F2F2;
+        mat-icon {
+          color: #2D2E2E;
+        }
+      }
+    }
+  }
+}
+
+.save-button {
+  padding: 0 20px;
+  margin: 0 20px;
+}
+
+.space-right {
+  flex-grow: 1;
+}
