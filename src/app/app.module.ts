@@ -11,13 +11,21 @@ import {ItemsComponent} from "./items/items.component";
 import {NavigatorService} from "./navigator.service";
 import {MenuComponent} from "./menu/menu.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatButtonModule, MatGridListModule} from "@angular/material";
+import {
+    MatButtonModule,
+    MatGridListModule,
+    MatIconModule, MatListModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatToolbarModule
+} from "@angular/material";
 import {ServerSettingsComponent} from "./server-settings/server-settings.component";
 import {BsDropdownModule} from "ngx-bootstrap";
 import {FormsModule} from "@angular/forms";
 import {EnumToArrayPipe} from "./utility/enum-to-array.pipe";
 import {FirstLetterToUpperPipe} from "./utility/first-letter-to-upper.pipe";
 import {SplitWordsFromEnumPipe} from "./utility/split-words-from-enum.pipe";
+import {NavbarComponent} from "./navbar/navbar.component";
 
 @NgModule({
     imports: [
@@ -25,8 +33,13 @@ import {SplitWordsFromEnumPipe} from "./utility/split-words-from-enum.pipe";
         BrowserAnimationsModule,
         MatButtonModule,
         MatGridListModule,
+        MatToolbarModule,
+        MatMenuModule,
+        MatIconModule,
         NgxElectronModule,
         AppRoutingModule,
+        MatSidenavModule,
+        MatListModule,
         FormsModule,
         BsDropdownModule.forRoot()
     ],
@@ -38,6 +51,7 @@ import {SplitWordsFromEnumPipe} from "./utility/split-words-from-enum.pipe";
         ServerSettingsComponent,
         MenuComponent,
         ItemsComponent,
+        NavbarComponent,
         EnumToArrayPipe,
         FirstLetterToUpperPipe,
         SplitWordsFromEnumPipe
