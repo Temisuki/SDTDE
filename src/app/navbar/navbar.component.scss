@@ -16,10 +16,10 @@ mat-toolbar {
     margin: 0;
 
     mat-nav-list {
-
+      padding-top:0;
       a {
+        padding: 18px 18px 16px 18px;
         color: #fff;
-        padding: 0 20px;
         display: inline-block;
       }
       .activated {
@@ -39,4 +39,57 @@ mat-toolbar {
 
 .space-right {
   flex-grow: 1;
+}
+
+//.text {
+//  font-weight: bold;
+//  transition: .5s;
+//  transform: translateY(10px);
+//  opacity: 0;
+//  display: none;
+//}
+//
+//.icons {
+//  transition: .5s;
+//}
+//
+////.icons:hover {
+////  transform: translateY(-20px);
+////}
+//
+////.icons:hover > .text{
+////  transform: translateY(-20px);
+////  opacity: 1;
+////  font-size: 15px;
+////}
+//
+//a:hover > .icons {
+//  transform: translateY(-20px);
+//  display: none;
+//}
+//
+//a:hover > .text {
+//  display: block;
+//  opacity: 1;
+//}
+
+.text {
+  font-weight: bold;
+  transition: .5s;
+  transform: translateY(10px);
+  opacity: 0;
+}
+
+.icons {
+  transition: .5s;
+}
+
+.icons:hover {
+  transform: translateY(-10px);
+}
+
+.icons:hover > .text{
+  transform: translateY(-10px);
+  display: inline;
+  opacity: 1;
 }

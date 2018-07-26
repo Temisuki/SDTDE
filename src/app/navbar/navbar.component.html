@@ -1,29 +1,23 @@
 <mat-toolbar class="navigation">
     <mat-toolbar-row>
-        <!--<button mat-button routerLink="/">App Name </button>-->
-
-        <!--<span class="spacer"></span>-->
-        <!--<button mat-button routerLink="/register">Register</button>-->
-        <!--<button mat-button routerLink="/login">Login</button>-->
         <mat-nav-list>
-            <a routerLink="">
-                <mat-icon>home</mat-icon>
+            <a [routerLink]="['/app']" routerLinkActive="activated" >
+                    <mat-icon class="icons">home</mat-icon>
             </a>
-            <a routerLink="items">
-                <mat-icon>list_alt</mat-icon>
+            <a [routerLink]="['/items']" routerLinkActive="activated">
+                <mat-icon class="icons">list_alt</mat-icon>
             </a>
-            <a routerLink="server">
-                <mat-icon>cloud_queue</mat-icon>
+            <a [routerLink]="['/server']" routerLinkActive="activated">
+                <mat-icon class="icons">cloud_queue</mat-icon>
             </a>
-            <a routerLink="settings">
-                <mat-icon>settings</mat-icon>
+            <a [routerLink]="['/settings']" routerLinkActive="activated">
+                <mat-icon class="icons">settings</mat-icon>
             </a>
-            <a routerLink="quicksettings">
-                <mat-icon>settings_applications</mat-icon>
+            <a [routerLink]="['/quicksettings']" routerLinkActive="activated">
+                <mat-icon class="icons">settings_applications</mat-icon>
             </a>
-
         </mat-nav-list>
-        <span class="space-right"></span>
-        <button class="btn btn-primary save-button">Save</button>
+            <span class="space-right"></span>
+            <button class="btn btn-primary save-button">Save</button>
     </mat-toolbar-row>
 </mat-toolbar>
