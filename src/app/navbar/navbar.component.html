@@ -1,21 +1,26 @@
 <mat-toolbar class="navigation">
     <mat-toolbar-row>
         <mat-nav-list>
-            <a [routerLink]="['/app']" routerLinkActive="activated" >
-                    <mat-icon class="icons">home</mat-icon>
-            </a>
-            <a [routerLink]="['/items']" routerLinkActive="activated">
-                <mat-icon class="icons">list_alt</mat-icon>
-            </a>
-            <a [routerLink]="['/server']" routerLinkActive="activated">
+            <div class="element" [routerLink]="['/app']" routerLinkActive="activated">
+                        <mat-icon class="icons">home</mat-icon>
+                        <div class="text">Home</div>
+            </div>
+            <div class="element" [routerLink]="['/items']" routerLinkActive="activated">
+                    <mat-icon class="icons">list_alt</mat-icon>
+                    <div class="text">Items</div>
+            </div>
+            <div class="element" [routerLink]="['/server']" routerLinkActive="activated">
                 <mat-icon class="icons">cloud_queue</mat-icon>
-            </a>
-            <a [routerLink]="['/settings']" routerLinkActive="activated">
+                <div class="text">Server</div>
+            </div>
+            <div class="element" [routerLink]="['/settings']" routerLinkActive="activated">
                 <mat-icon class="icons">settings</mat-icon>
-            </a>
-            <a [routerLink]="['/quicksettings']" routerLinkActive="activated">
+                <div class="text">Settings</div>
+            </div>
+            <div class="element" [routerLink]="['/quicksettings']" routerLinkActive="activated">
                 <mat-icon class="icons">settings_applications</mat-icon>
-            </a>
+                <div class="text">Quick Settings</div>
+            </div>
         </mat-nav-list>
             <span class="space-right"></span>
             <button class="btn btn-primary save-button">Save</button>
