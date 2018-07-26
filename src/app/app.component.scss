@@ -1,3 +1,24 @@
+
+//variables
+$primary-bg-color: #222831;
+$primary-color: #00adb5;
+$secondary-color: #393e46;
+$gray-color: #eeeeee;
+
+
+.fake-body {
+  background-color: $primary-bg-color;
+  height: 100%;
+}
+.btn-primary {
+  background-color: $primary-color;
+  border-color: $gray-color;
+}
+
+.btn-danger {
+  border-color: $gray-color;
+}
+
 :host {
   margin: 0;
   padding: 0;

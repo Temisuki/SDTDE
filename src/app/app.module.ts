@@ -14,7 +14,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {
     MatButtonModule,
     MatGridListModule,
-    MatIconModule, MatListModule,
+    MatIconModule, MatInputModule, MatListModule,
     MatMenuModule,
     MatSidenavModule,
     MatToolbarModule
@@ -26,6 +26,7 @@ import {EnumToArrayPipe} from "./utility/enum-to-array.pipe";
 import {FirstLetterToUpperPipe} from "./utility/first-letter-to-upper.pipe";
 import {SplitWordsFromEnumPipe} from "./utility/split-words-from-enum.pipe";
 import {NavbarComponent} from "./navbar/navbar.component";
+import {SearchFilterPipe} from "./utility/search-filter.pipe";
 
 @NgModule({
     imports: [
@@ -33,6 +34,7 @@ import {NavbarComponent} from "./navbar/navbar.component";
         BrowserAnimationsModule,
         MatButtonModule,
         MatGridListModule,
+        MatInputModule,
         MatToolbarModule,
         MatMenuModule,
         MatIconModule,
@@ -54,6 +56,7 @@ import {NavbarComponent} from "./navbar/navbar.component";
         NavbarComponent,
         EnumToArrayPipe,
         FirstLetterToUpperPipe,
+        SearchFilterPipe,
         SplitWordsFromEnumPipe
     ],
     bootstrap: [AppComponent],

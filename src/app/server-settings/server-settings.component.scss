@@ -1,6 +1,26 @@
+//variables
+$primary-bg-color: #222831;
+$primary-color: #00adb5;
+$primary-darker-color: #00868e;
+$secondary-color: #393e46;
+$gray-color: #eeeeee;
+
 .btn {
   width: 100%;
-  height: 100%;
+}
+
+.btn-primary {
+  background-color: $primary-color;
+  border-color: $gray-color;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
+  background-color: $primary-darker-color;
+  border-color: $gray-color;
+}
+
+.btn-danger {
+  border-color: $gray-color;
 }
 
 .table td {
@@ -8,14 +28,18 @@
 }
 
 .second-tr {
-  background-color: #485058;
+  background-color: $secondary-color;
+}
+
+input {
+  text-align: center;
 }
 
 // Base Colors
-$shade-10: #2c3e50 !default;
+$shade-10: $primary-color !default;
 $shade-1: #d7dcdf !default;
 $shade-0: #fff !default;
-$teal: #1abc9c !default;
+$teal: $primary-color !default;
 
 
 // Reset
@@ -69,6 +93,7 @@ $range-label-width: 60px !default;
     width: $range-handle-size;
     height: $range-handle-size;
     border-radius: 50%;
+    border: 1px solid white;
     background: $range-handle-color;
     cursor: pointer;
     transition: background .15s ease-in-out;

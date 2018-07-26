@@ -22,6 +22,7 @@ import {
 import {BsDropdownDirective} from "ngx-bootstrap";
 import {UtilityScripts} from "../utility/utility-scripts";
 import {ElectronService} from "ngx-electron";
+import {NavbarOptionsModel} from "../utility/navbar-options.model";
 
 @Component({
     selector: 'server-settings-app',
@@ -30,8 +31,12 @@ import {ElectronService} from "ngx-electron";
 })
 export class ServerSettingsComponent implements OnInit, AfterViewInit {
 
+    options: NavbarOptionsModel;
+    propertyName = '';
     xmlFileReader: XMLFileReader;
     XMLPath = '';
+
+    // Enums
     TypeOfValue = TypeOfValue;
     Difficulty = Difficulty;
     ZombiesRun = ZombiesRun;
@@ -40,6 +45,7 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
     DropOnDeath = DropOnDeath;
     GameWorld = GameWorld;
     PlayerKillingMode = PlayerKillingMode;
+
     getBooleanValue = ServerSettings.getBooleanValue;
     serverXML = null;
 
@@ -47,6 +53,10 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
                 private electronService: ElectronService,
                 private ref: ChangeDetectorRef) { }
     ngOnInit(): void {
+        this.options = new NavbarOptionsModel();
+        this.options.saveCallback = () => {
+            console.log('save');
+        };
         this.xmlFileReader = new XMLFileReader();
         UtilityScripts.openFileDialog(this.electronService, (path) => {
             this.XMLPath = path;
@@ -87,49 +97,53 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
         console.log(this.serverXML);
     }
 
-    booleanChangeOposite(index) {
-        this.serverXML.ServerSettings.property[index].$.value = !this.getBooleanValue(this.serverXML.ServerSettings.property[index].$.value);
+    getItemByName(name) {
+        return this.serverXML.ServerSettings.property.find(x => x.$.name === name);
+    }
+
+    booleanChangeOposite(name) {
+        this.getItemByName(name).$.value = !this.getBooleanValue(this.getItemByName(name).$.value);
         this.ref.detectChanges();
     }
 
-    setDifficulty(difficulty, index) {
-        this.serverXML.ServerSettings.property[index].$.value = Difficulty[difficulty];
+    setDifficulty(difficulty, name) {
+        this.getItemByName(name).$.value = Difficulty[difficulty];
         this.detectChanges();
     }
 
-    setDropOnDeath(dropOnDeath, index) {
-        this.serverXML.ServerSettings.property[index].$.value = DropOnDeath[dropOnDeath];
+    setDropOnDeath(dropOnDeath, name) {
+        this.getItemByName(name).$.value = DropOnDeath[dropOnDeath];
         this.detectChanges();
     }
 
-    setDropOnQuit(dropOnQuit, index) {
-        this.serverXML.ServerSettings.property[index].$.value = DropOnQuit[dropOnQuit];
+    setDropOnQuit(dropOnQuit, name) {
+        this.getItemByName(name).$.value = DropOnQuit[dropOnQuit];
         this.detectChanges();
     }
 
-    setEnemyDifficulty(enemyDifficulty, index) {
-        this.serverXML.ServerSettings.property[index].$.value = EnemyDifficulty[enemyDifficulty];
+    setEnemyDifficulty(enemyDifficulty, name) {
+        this.getItemByName(name).$.value = EnemyDifficulty[enemyDifficulty];
         this.detectChanges();
     }
 
-    setZombiesRun(zombiesRun, index) {
-        this.serverXML.ServerSettings.property[index].$.value = ZombiesRun[zombiesRun];
+    setZombiesRun(zombiesRun, name) {
+        this.getItemByName(name).$.value = ZombiesRun[zombiesRun];
         this.detectChanges();
     }
 
-    setGameWorld(gameWorld, index) {
-        this.serverXML.ServerSettings.property[index].$.value = gameWorld.match(/([A-Z]?[^A-Z]*)/g).slice(0,-1).join(' ');
+    setGameWorld(gameWorld, name) {
+        this.getItemByName(name).$.value = gameWorld.match(/([A-Z]?[^A-Z]*)/g).slice(0,-1).join(' ');
         this.detectChanges();
     }
 
-    setPlayerKillingMode(playerKillingMode, index) {
-        this.serverXML.ServerSettings.property[index].$.value = PlayerKillingMode[playerKillingMode];
+    setPlayerKillingMode(playerKillingMode, name) {
+        this.getItemByName(name).$.value = PlayerKillingMode[playerKillingMode];
         this.detectChanges();
     }
 
-    setPercentage(index, input) {
-        if (this.serverXML.ServerSettings.property[index].$.value > 100 || this.serverXML.ServerSettings.property[index].$.value < 0) {
-            this.serverXML.ServerSettings.property[index].$.value = 100;
+    setPercentage(name, input) {
+        if (this.getItemByName(name).$.value > 100 || this.getItemByName(name).$.value < 0) {
+            this.getItemByName(name).$.value = 100;
             input.value = 100;
         }
     }

@@ -2,12 +2,12 @@
     <mat-toolbar-row>
         <mat-nav-list>
             <div class="element" [routerLink]="['/app']" routerLinkActive="activated">
-                        <mat-icon class="icons">home</mat-icon>
-                        <div class="text">Home</div>
+                <mat-icon class="icons">home</mat-icon>
+                <div class="text">Home</div>
             </div>
             <div class="element" [routerLink]="['/items']" routerLinkActive="activated">
-                    <mat-icon class="icons">list_alt</mat-icon>
-                    <div class="text">Items</div>
+                <mat-icon class="icons">list_alt</mat-icon>
+                <div class="text">Items</div>
             </div>
             <div class="element" [routerLink]="['/server']" routerLinkActive="activated">
                 <mat-icon class="icons">cloud_queue</mat-icon>
@@ -22,7 +22,12 @@
                 <div class="text">Quick Settings</div>
             </div>
         </mat-nav-list>
-            <span class="space-right"></span>
-            <button class="btn btn-primary save-button">Save</button>
+        <span class="space-right"></span>
+        <mat-nav-list *ngIf="options">
+        <div *ngIf="options?.saveCallback" class="element" (click)="saveMethod()">
+            <mat-icon class="icons">save</mat-icon>
+            <div class="text">Save</div>
+        </div>
+        </mat-nav-list>
     </mat-toolbar-row>
 </mat-toolbar>
