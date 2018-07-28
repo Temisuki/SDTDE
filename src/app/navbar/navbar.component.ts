@@ -24,4 +24,12 @@ export class NavbarComponent implements OnInit {
         this.options.saveCallback();
     }
 
+    backMethod() {
+        this.options.backCallback();
+    }
+
+    restoreMethod() {
+        this.options.restoreCallback();
+    }
+
 }

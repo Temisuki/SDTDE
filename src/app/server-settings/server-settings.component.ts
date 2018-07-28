@@ -22,7 +22,11 @@ import {
 import {BsDropdownDirective} from "ngx-bootstrap";
 import {UtilityScripts} from "../utility/utility-scripts";
 import {ElectronService} from "ngx-electron";
-import {NavbarOptionsModel} from "../utility/navbar-options.model";
+import {NavbarOptionsModel, PropertyModel} from "../utility/navbar-options.model";
+import {Observable} from "rxjs";
+import {debounceTime, distinctUntilChanged, map} from "rxjs/operators";
+import {COMMA, ENTER, SPACE} from "@angular/cdk/keycodes";
+import {MatChipInput, MatChipInputEvent} from "@angular/material";
 
 @Component({
     selector: 'server-settings-app',
@@ -31,8 +35,12 @@ import {NavbarOptionsModel} from "../utility/navbar-options.model";
 })
 export class ServerSettingsComponent implements OnInit, AfterViewInit {
 
+    @ViewChild('inputChips') inputChips: ElementRef;
+
     options: NavbarOptionsModel;
-    propertyName = '';
+    propertyName = [];
+    separatorKeysCodes = [ENTER, COMMA, SPACE];
+    removable = true;
     xmlFileReader: XMLFileReader;
     XMLPath = '';
 
@@ -48,14 +56,38 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
 
     getBooleanValue = ServerSettings.getBooleanValue;
     serverXML = null;
+    initialXML = null;
+
+    padding = '66px';
+
+    lastChanges: PropertyModel[] = [];
+    typeAheadArray: string[] = [];
+    fakeSearchWord = true;
+
+    search = (text$: Observable<string>) =>
+        text$.pipe(
+            debounceTime(200),
+            distinctUntilChanged(),
+            map(term => term.length < 2 ? []
+                : this.typeAheadArray.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+        );
 
     constructor(private navigator: NavigatorService,
                 private electronService: ElectronService,
-                private ref: ChangeDetectorRef) { }
+                private ref: ChangeDetectorRef) {
+    }
+
     ngOnInit(): void {
+
+        this.inputChips.nativeElement.addEventListener('onresize', function () {
+            console.log('resize');
+        });
         this.options = new NavbarOptionsModel();
         this.options.saveCallback = () => {
-            console.log('save');
+            this.saveXML();
+        };
+        this.options.restoreCallback = () => {
+            this.restoreXML();
         };
         this.xmlFileReader = new XMLFileReader();
         UtilityScripts.openFileDialog(this.electronService, (path) => {
@@ -65,19 +97,61 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
         // ServerSettings.spawnProcess();
     }
 
+    add(event: MatChipInputEvent): void {
+        let input = event.input;
+        let value = event.value;
+        if (value.length > 0) {
+            this.propertyName.push(value);
+            this.changeHeight();
+        }
+        if (input) {
+            input.value = '';
+        }
+    }
+
+    remove(item) {
+        this.propertyName.splice(this.propertyName.indexOf(item), 1);
+        this.changeHeight();
+    }
+
+    removeByKey(value) {
+        if (value.length < 1) {
+            if (this.propertyName.length > 0) {
+                this.propertyName.pop();
+                this.changeHeight();
+            }
+        }
+    }
+
+    changeHeight() {
+        setTimeout(() => {
+            this.fakeSearchWord = !this.fakeSearchWord;
+            this.padding = this.inputChips.nativeElement.clientHeight + 'px';
+            this.detectChanges();
+        }, 100);
+    }
+
     readFile(path: string) {
         this.xmlFileReader.readFile(path, (XML) => {
             this.serverXML = XML;
+            this.initialXML = (JSON.parse(JSON.stringify(XML)));
+            this.fillTypeAhead();
             this.ref.detectChanges();
         });
     }
 
+    fillTypeAhead() {
+        this.serverXML.ServerSettings.property.forEach(property => {
+            this.typeAheadArray.push(property.$.name);
+        })
+    }
+
     saveXML() {
-        // this.xmlFileReader.saveXML(this.serverXML, this.XMLPath);
+        this.xmlFileReader.saveXML(this.serverXML, this.XMLPath);
     }
 
     getTypeOfDirective(name, value) {
-        if(value === '') return TypeOfValue.String;
+        if (value === '') return TypeOfValue.String;
         if (name === 'GameDifficulty') return TypeOfValue.Difficulty;
         if (name === 'ZombiesRun') return TypeOfValue.ZombiesRun;
         if (name === 'GameWorld') return TypeOfValue.GameWorld;
@@ -87,7 +161,7 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
         if (name === 'DropOnQuit') return TypeOfValue.DropOnQuit;
         if (name === 'LootAbundance' || name === 'BlockDurabilityModifier') return TypeOfValue.Percentage;
         const booleanType = this.getBooleanValue(value);
-        if(isBoolean(booleanType)) {
+        if (isBoolean(booleanType)) {
             return TypeOfValue.Boolean;
         }
         return TypeOfValue.String;
@@ -102,41 +176,49 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
     }
 
     booleanChangeOposite(name) {
+        this.addToBack(new PropertyModel(this.getItemByName(name)));
         this.getItemByName(name).$.value = !this.getBooleanValue(this.getItemByName(name).$.value);
         this.ref.detectChanges();
     }
 
     setDifficulty(difficulty, name) {
+        this.addToBack(new PropertyModel(this.getItemByName(name)));
         this.getItemByName(name).$.value = Difficulty[difficulty];
         this.detectChanges();
     }
 
     setDropOnDeath(dropOnDeath, name) {
+        this.addToBack(new PropertyModel(this.getItemByName(name)));
         this.getItemByName(name).$.value = DropOnDeath[dropOnDeath];
         this.detectChanges();
     }
 
     setDropOnQuit(dropOnQuit, name) {
+        this.addToBack(new PropertyModel(this.getItemByName(name)));
         this.getItemByName(name).$.value = DropOnQuit[dropOnQuit];
         this.detectChanges();
     }
 
     setEnemyDifficulty(enemyDifficulty, name) {
+        this.addToBack(new PropertyModel(this.getItemByName(name)));
         this.getItemByName(name).$.value = EnemyDifficulty[enemyDifficulty];
         this.detectChanges();
     }
 
     setZombiesRun(zombiesRun, name) {
+        this.addToBack(new PropertyModel(this.getItemByName(name)));
         this.getItemByName(name).$.value = ZombiesRun[zombiesRun];
         this.detectChanges();
     }
 
     setGameWorld(gameWorld, name) {
-        this.getItemByName(name).$.value = gameWorld.match(/([A-Z]?[^A-Z]*)/g).slice(0,-1).join(' ');
+        this.addToBack(new PropertyModel(this.getItemByName(name)));
+        this.getItemByName(name).$.value = gameWorld.match(/([A-Z]?[^A-Z]*)/g).slice(0, -1).join(' ');
         this.detectChanges();
     }
 
     setPlayerKillingMode(playerKillingMode, name) {
+        this.addToBack(new PropertyModel(this.getItemByName(name)));
         this.getItemByName(name).$.value = PlayerKillingMode[playerKillingMode];
         this.detectChanges();
     }
@@ -148,15 +230,30 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
         }
     }
 
+    addToBack(lastProperty: PropertyModel) {
+        this.lastChanges.push(lastProperty);
+    }
+
+    backChanges() {
+        if (this.lastChanges.length > 0) {
+            this.getItemByName(this.lastChanges[this.lastChanges.length - 1].name).$.value = this.lastChanges[this.lastChanges.length - 1].value;
+            this.lastChanges.pop();
+            this.detectChanges();
+        }
+    }
+
+    restoreXML() {
+        this.serverXML = JSON.parse(JSON.stringify(this.initialXML));
+        this.detectChanges();
+    }
 
     detectChanges() {
         this.ref.detectChanges();
-        setTimeout(() =>{
+        setTimeout(() => {
             this.ref.detectChanges();
         }, 100);
     }
 
     ngAfterViewInit(): void {
     }
-
 }

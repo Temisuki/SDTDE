@@ -1,5 +1,6 @@
 <mat-toolbar class="navigation">
     <mat-toolbar-row>
+        <img src="../../assets/images/Logo.svg">
         <mat-nav-list>
             <div class="element" [routerLink]="['/app']" routerLinkActive="activated">
                 <mat-icon class="icons">home</mat-icon>
@@ -24,10 +25,18 @@
         </mat-nav-list>
         <span class="space-right"></span>
         <mat-nav-list *ngIf="options">
-        <div *ngIf="options?.saveCallback" class="element" (click)="saveMethod()">
-            <mat-icon class="icons">save</mat-icon>
-            <div class="text">Save</div>
-        </div>
+            <div *ngIf="options?.saveCallback" class="element" (click)="saveMethod()">
+                <mat-icon class="icons">save</mat-icon>
+                <div class="text">Save</div>
+            </div>
+            <div *ngIf="options?.backCallback" class="element" (click)="backMethod()">
+                <mat-icon class="icons">settings_backup_restore</mat-icon>
+                <div class="text">Save</div>
+            </div>
+            <div *ngIf="options?.restoreCallback" class="element" (click)="restoreMethod()">
+                <mat-icon class="icons">settings_backup_restore</mat-icon>
+                <div class="text">Restore file</div>
+            </div>
         </mat-nav-list>
     </mat-toolbar-row>
 </mat-toolbar>

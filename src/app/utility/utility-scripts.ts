@@ -4,7 +4,7 @@ export class UtilityScripts {
         electronService.remote.dialog.showOpenDialog({
             properties: ['openFile']
         }, (file) => {
-            if (file.length > 0)
+            if (file)
                 callback(file[0]);
         });
     }
@@ -15,7 +15,7 @@ export class UtilityScripts {
         electronService.remote.dialog.showOpenDialog({
             properties: ['openDirectory']
         }, (directory) => {
-            if (directory.length > 0)
+            if (directory)
                 callback(directory[0]);
         });
     }
