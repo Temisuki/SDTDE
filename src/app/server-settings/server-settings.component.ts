@@ -1,10 +1,7 @@
 import {
-    AfterContentChecked,
     AfterViewInit,
     ChangeDetectorRef,
     Component, ElementRef,
-    Input,
-    OnChanges,
     OnInit, ViewChild
 } from "@angular/core";
 import {NavigatorService} from "../navigator.service";
@@ -19,14 +16,13 @@ import {
     DropOnQuit,
     GameWorld, PlayerKillingMode, ZombiesRun
 } from "./server-settings";
-import {BsDropdownDirective} from "ngx-bootstrap";
 import {UtilityScripts} from "../utility/utility-scripts";
 import {ElectronService} from "ngx-electron";
 import {NavbarOptionsModel, PropertyModel} from "../utility/navbar-options.model";
 import {Observable} from "rxjs";
 import {debounceTime, distinctUntilChanged, map} from "rxjs/operators";
 import {COMMA, ENTER, SPACE} from "@angular/cdk/keycodes";
-import {MatChipInput, MatChipInputEvent} from "@angular/material";
+import {MatChipInputEvent} from "@angular/material";
 
 @Component({
     selector: 'server-settings-app',
