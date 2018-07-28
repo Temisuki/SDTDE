@@ -1,3 +1,9 @@
+$primary-bg-color: #222831;
+$primary-color: #00adb5;
+$secondary-color: #393e46;
+$gray-color: #eeeeee;
+
+
 @font-face {
   font-family: 'Raleway';
   font-style: normal;
@@ -6,7 +12,10 @@
 }
 
 body{
+  background-color: $primary-bg-color;
+  height: 100vh;
   font-family: 'Raleway', sans-serif;
+  overflow-x: hidden;
 }
 
 .tile {

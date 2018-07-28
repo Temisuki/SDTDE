@@ -1,3 +1,24 @@
+
+//variables
+$primary-bg-color: #222831;
+$primary-color: #00adb5;
+$secondary-color: #393e46;
+$gray-color: #eeeeee;
+
+
+.fake-body {
+  background-color: $primary-bg-color;
+  height: 100%;
+}
+.btn-primary {
+  background-color: $primary-color;
+  border-color: $gray-color;
+}
+
+.btn-danger {
+  border-color: $gray-color;
+}
+
 :host {
   margin: 0;
   padding: 0;
@@ -22,4 +43,33 @@
     width: 100%;
     padding-top: 15px;
   }
+}
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+*:after,
+*:before{
+  box-sizing: border-box;
+}
+
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+.header{
+  flex: 0 0 auto;
+  background: #aaa;
+}
+.content{
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+.footer{
+  flex: 0 0 auto;
+  background: #aaa;
 }
