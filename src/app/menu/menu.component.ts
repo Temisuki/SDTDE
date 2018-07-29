@@ -17,9 +17,11 @@ export class MenuComponent implements OnInit {
     private editorService: EditorService,
     private ref: ChangeDetectorRef) { }
     ngOnInit(): void {
-        UtilityScripts.openDirectoryDialog(this.electronService, (path) => {
-            this.editorService.gamePath = path;
-        });
+        if(this.editorService.gamePath) {
+            UtilityScripts.openDirectoryDialog(this.electronService, (path) => {
+                this.editorService.gamePath = path;
+            });
+        }
     }
 
     gotoItems() {
