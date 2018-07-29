@@ -26,7 +26,9 @@ export class XMLFileReader {
         fs.writeFile(path, builder.buildObject(xml), () => {
             swal({
                 type: "success",
-                title: 'File saved successfuly'
+                title: 'File saved successfuly',
+                confirmButtonColor: '#00adb5',
+                background: '#222831',
             })
         });
     }

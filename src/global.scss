@@ -43,3 +43,30 @@ body{
   height: 100%;
   width: 100%;
 }
+.swal2-icon.swal2-success {
+  border-color: $primary-color !important;
+}
+.swal2-icon.swal2-success.swal2-animate-success-icon {
+  border-color: $primary-color !important;
+}
+.swal2-icon.swal2-success [class^='swal2-success-line'] {
+  background-color: $primary-color !important;
+}
+.swal2-success-line-tip {
+  border-color: $primary-color !important;
+}
+.swal2-success-line-long {
+  border-color: $primary-color !important;
+}
+.swal2-icon.swal2-success .swal2-success-ring {
+  border-color: rgba(0, 173, 181, 0.21) !important;
+}
+
+.swal2-title {
+  color: #ffffff !important;
+}
+
+.swal2-popup {
+  border: solid 1px $primary-color;
+  border-radius: 25px !important;
+}
