@@ -10,6 +10,12 @@ $gray-color: #eeeeee;
   src: local('Raleway'), local('Raleway-Regular'), url('./assets/fonts/Raleway-Regular.woff2') format('woff2');
 }
 
+.fake-body {
+  margin-top: 64px;
+  background-color: $primary-bg-color;
+  height: 100%;
+}
+
 .mat-form-field-appearance-legacy .mat-form-field-underline {
   background-color: $gray-color !important;
 }
