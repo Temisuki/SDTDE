@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from "@angular/core";
+import {AfterViewInit, ChangeDetectorRef, Component, OnInit} from "@angular/core";
 import {NavigatorService} from "../navigator.service";
 import { Links } from "../link";
 import {ElectronService} from "ngx-electron";
@@ -10,16 +10,16 @@ import {EditorService} from "../editor.service";
     templateUrl: require('./menu.component.html'),
     styleUrls: [require('./menu.component.scss')]
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnInit, AfterViewInit {
 
     constructor(private navigator: NavigatorService,
     private electronService: ElectronService,
     private editorService: EditorService,
     private ref: ChangeDetectorRef) { }
     ngOnInit(): void {
-        if(!this.editorService.gamePath) {
+        if(!this.editorService.getGamePath()) {
             UtilityScripts.openDirectoryDialog(this.electronService, (path) => {
-                this.editorService.gamePath = path;
+                this.editorService.setGamePath(path);
             });
         }
     }
@@ -37,5 +37,9 @@ export class MenuComponent implements OnInit {
 
     gotoServer() {
         this.navigator.goTo(Links.Server);
+    }
+
+    ngAfterViewInit(): void {
+
     }
 }

@@ -19,4 +19,18 @@ export class UtilityScripts {
                 callback(directory[0]);
         });
     }
+
+    static saveToLocalStorage(key: string, value: string) {
+        localStorage.setItem(key, value);
+    }
+
+    static getFromLocalStorage(key: string) {
+        return localStorage.getItem(key);
+    }
+}
+
+export enum LocalStorageKeys {
+    GAMEPATH = 'GamePath',
+    ITEMSXMLPATH = 'ItemsPath',
+    SERVERXMLPATH = 'ServerXMLPath'
 }
