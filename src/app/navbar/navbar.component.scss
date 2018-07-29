@@ -40,7 +40,7 @@ mat-toolbar {
         height: 100%;
         cursor: pointer;
         text-align: center;
-        padding: 0 20px 0 20px;
+        padding: 10px 20px 0 20px;
         margin: 0 3px;
         color: #fff;
         display: inline-block;
@@ -131,8 +131,10 @@ mat-toolbar {
 //}
 
 .icons {
+  display: block;
   transition: .5s;
   padding-top: 5px;
+  margin: auto;
 }
 //
 //.element:hover > .icons{
