@@ -12,11 +12,11 @@ import {NavigatorService} from "./navigator.service";
 import {MenuComponent} from "./menu/menu.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {
-    MatButtonModule,
+    MatButtonModule, MatChipsModule, MatFormFieldModule,
     MatGridListModule,
     MatIconModule, MatInputModule, MatListModule,
     MatMenuModule,
-    MatSidenavModule,
+    MatSidenavModule, MatSnackBarModule,
     MatToolbarModule
 } from "@angular/material";
 import {ServerSettingsComponent} from "./server-settings/server-settings.component";
@@ -27,6 +27,7 @@ import {FirstLetterToUpperPipe} from "./utility/first-letter-to-upper.pipe";
 import {SplitWordsFromEnumPipe} from "./utility/split-words-from-enum.pipe";
 import {NavbarComponent} from "./navbar/navbar.component";
 import {SearchFilterPipe} from "./utility/search-filter.pipe";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
     imports: [
@@ -41,6 +42,10 @@ import {SearchFilterPipe} from "./utility/search-filter.pipe";
         NgxElectronModule,
         AppRoutingModule,
         MatSidenavModule,
+        MatSnackBarModule,
+        MatFormFieldModule,
+        MatChipsModule,
+        NgbModule.forRoot(),
         MatListModule,
         FormsModule,
         BsDropdownModule.forRoot()

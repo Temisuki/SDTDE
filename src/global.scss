@@ -3,7 +3,6 @@ $primary-color: #00adb5;
 $secondary-color: #393e46;
 $gray-color: #eeeeee;
 
-
 @font-face {
   font-family: 'Raleway';
   font-style: normal;
@@ -11,9 +10,24 @@ $gray-color: #eeeeee;
   src: local('Raleway'), local('Raleway-Regular'), url('./assets/fonts/Raleway-Regular.woff2') format('woff2');
 }
 
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: $gray-color !important;
+}
+.mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: $gray-color !important;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-label {
+  color: $gray-color !important;
+}
+.mat-chip.mat-standard-chip {
+  color: $gray-color !important;
+  background-color: $primary-color !important;
+}
+
 body{
-  background-color: $primary-bg-color;
   height: 100vh;
+  background-color: $primary-bg-color;
   font-family: 'Raleway', sans-serif;
   overflow-x: hidden;
 }
