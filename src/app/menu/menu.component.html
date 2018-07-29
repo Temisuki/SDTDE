@@ -14,9 +14,35 @@
     <!--</mat-grid-tile>-->
     <!--</mat-grid-list>-->
 <!--</div>-->
-<div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-6 tile"><button class="tile-button" (click)="gotoServer()">Server</button></div>
-    <div class="col-lg-6 col-md-6 col-sm-6 tile"><button class="tile-button" (click)="gotoServer()">Server</button></div>
-    <div class="col-lg-6 col-md-6 col-sm-6 tile"><button class="tile-button" (click)="gotoServer()">Server</button></div>
-    <div class="col-lg-6 col-md-6 col-sm-6 tile"><button class="tile-button" (click)="gotoServer()">Server</button></div>
+<!--<div class="row">-->
+    <!--<div class="col-lg-6 col-md-6 col-sm-6 tile"><button class="tile-button" (click)="gotoServer()">Server</button></div>-->
+    <!--<div class="col-lg-6 col-md-6 col-sm-6 tile"><button class="tile-button" (click)="gotoServer()">Server</button></div>-->
+    <!--<div class="col-lg-6 col-md-6 col-sm-6 tile"><button class="tile-button" (click)="gotoServer()">Server</button></div>-->
+    <!--<div class="col-lg-6 col-md-6 col-sm-6 tile"><button class="tile-button" (click)="gotoServer()">Server</button></div>-->
+<!--</div>-->
+<div class="grid-container">
+    <div class="Navbar">Navbar
+    </div>
+    <div class="Content">
+        <div class="menu-container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="logo-rt">
+                        <img class="logort" src="../../assets/images/logort.svg">
+                    </div>
+                </div>
+                <ul class="col-12 text-center menu">
+                    <li class="menu-item" (click)="gotoItems()"><div class="text">Items</div></li>
+                    <li class="menu-item" (click)="gotoServer()"><div class="text">Server</div></li>
+                    <li class="menu-item" (click)="gotoQuickSettings()"><div class="text">Quick Settings</div></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="Leftside">Lewy
+    </div>
+    <div class="Files">Pliki
+    </div>
+    <div class="News">Wiadomosci
+    </div>
 </div>
