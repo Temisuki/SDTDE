@@ -23,6 +23,8 @@ import {Observable} from "rxjs";
 import {debounceTime, distinctUntilChanged, map} from "rxjs/operators";
 import {COMMA, ENTER, SPACE} from "@angular/cdk/keycodes";
 import {MatChipInputEvent} from "@angular/material";
+import {EditorService} from "../editor.service";
+import {FilePaths} from "../link";
 
 @Component({
     selector: 'server-settings-app',
@@ -70,6 +72,7 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
 
     constructor(private navigator: NavigatorService,
                 private electronService: ElectronService,
+                private editorService: EditorService,
                 private ref: ChangeDetectorRef) {
     }
 
@@ -86,10 +89,14 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
             this.restoreXML();
         };
         this.xmlFileReader = new XMLFileReader();
-        UtilityScripts.openFileDialog(this.electronService, (path) => {
-            this.XMLPath = path;
-            this.readFile(path);
-        });
+        if (this.editorService.gamePath) {
+            this.readFile(this.editorService.gamePath + FilePaths.SERVERXML);
+        } else {
+            UtilityScripts.openFileDialog(this.electronService, (path) => {
+                this.XMLPath = path;
+                this.readFile(path);
+            });
+        }
         // ServerSettings.spawnProcess();
     }
 
