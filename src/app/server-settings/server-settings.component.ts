@@ -89,11 +89,12 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
             this.restoreXML();
         };
         this.xmlFileReader = new XMLFileReader();
-        if (this.editorService.getGamePath()) {
-            this.XMLPath = this.editorService.getGamePath() + FilePaths.SERVERXML;
+        if (this.editorService.getServerSettingsPath()) {
+            this.XMLPath = this.editorService.getServerSettingsPath();
             this.readFile(this.XMLPath);
         } else {
             UtilityScripts.openFileDialog(this.electronService, (path) => {
+                this.editorService.setServerSettingsPath(path);
                 this.XMLPath = path;
                 this.readFile(path);
             });

@@ -25,3 +25,4 @@ linux_installer/*
 # miscellaneous
 npm-debug-log
 /node_modules/
+/dist/
