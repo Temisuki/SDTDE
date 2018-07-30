@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from "@angular/core";
 import {NavigatorService} from "../navigator.service";
 import {BreakpointObserver} from "@angular/cdk/layout";
 import {NavigationEnd, Router} from "@angular/router";
-import {NavbarOptionsModel} from "../utility/navbar-options.model";
+import {NavbarOptionsModel} from "../utility/models/navbar-options.model";
 
 @Component({
     selector: 'navbar-app',

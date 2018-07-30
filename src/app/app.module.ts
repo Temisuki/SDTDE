@@ -28,6 +28,8 @@ import {SplitWordsFromEnumPipe} from "./utility/split-words-from-enum.pipe";
 import {NavbarComponent} from "./navbar/navbar.component";
 import {SearchFilterPipe} from "./utility/search-filter.pipe";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {NewsService} from "./news.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
     imports: [
@@ -48,7 +50,8 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
         NgbModule.forRoot(),
         MatListModule,
         FormsModule,
-        BsDropdownModule.forRoot()
+        BsDropdownModule.forRoot(),
+        HttpClientModule
     ],
     declarations: [
         AppComponent,
@@ -65,7 +68,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
         SplitWordsFromEnumPipe
     ],
     bootstrap: [AppComponent],
-    providers: [EditorService, NavigatorService]
+    providers: [EditorService, NavigatorService, NewsService]
 })
 export class AppModule {
 }

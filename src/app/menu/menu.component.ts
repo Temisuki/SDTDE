@@ -4,6 +4,8 @@ import { Links } from "../link";
 import {ElectronService} from "ngx-electron";
 import {UtilityScripts} from "../utility/utility-scripts";
 import {EditorService} from "../editor.service";
+import {NewsService} from "../news.service";
+import {News} from "../utility/models/news.model";
 
 @Component({
     selector: 'boilerplate-app',
@@ -12,7 +14,9 @@ import {EditorService} from "../editor.service";
 })
 export class MenuComponent implements OnInit, AfterViewInit {
 
+    news: News[] = [];
     constructor(private navigator: NavigatorService,
+    private newsService: NewsService,
     private electronService: ElectronService,
     private editorService: EditorService,
     private ref: ChangeDetectorRef) { }
@@ -22,6 +26,7 @@ export class MenuComponent implements OnInit, AfterViewInit {
                 this.editorService.setGamePath(path);
             });
         }
+        this.getNews();
     }
 
     gotoItems() {
@@ -41,5 +46,15 @@ export class MenuComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit(): void {
 
+    }
+
+    getNews() {
+        this.newsService.getNews().subscribe(
+            news => this.news = news
+        )
+    }
+
+    openInBrowser(link) {
+        this.electronService.shell.openExternal(link);
     }
 }
