@@ -1,27 +1,8 @@
-<!--<div style="background-color: red; height: 80vh; width: 95vh">-->
-    <!--<mat-grid-list cols="2">-->
-    <!--<mat-grid-tile class="tile">-->
-    <!--<button (click)="gotoItems()" mat-button>Items</button>-->
-    <!--</mat-grid-tile>-->
-    <!--<mat-grid-tile class="tile">-->
-    <!--<button (click)="gotoServer()">Server</button>-->
-    <!--</mat-grid-tile>-->
-    <!--<mat-grid-tile class="tile">-->
-    <!--<button (click)="gotoSettings()">Settings</button>-->
-    <!--</mat-grid-tile>-->
-    <!--<mat-grid-tile class="tile">-->
-    <!--<button (click)="gotoQuickSettings()">Quick Settings</button>-->
-    <!--</mat-grid-tile>-->
-    <!--</mat-grid-list>-->
-<!--</div>-->
-<!--<div class="row">-->
-    <!--<div class="col-lg-6 col-md-6 col-sm-6 tile"><button class="tile-button" (click)="gotoServer()">Server</button></div>-->
-    <!--<div class="col-lg-6 col-md-6 col-sm-6 tile"><button class="tile-button" (click)="gotoServer()">Server</button></div>-->
-    <!--<div class="col-lg-6 col-md-6 col-sm-6 tile"><button class="tile-button" (click)="gotoServer()">Server</button></div>-->
-    <!--<div class="col-lg-6 col-md-6 col-sm-6 tile"><button class="tile-button" (click)="gotoServer()">Server</button></div>-->
-<!--</div>-->
 <div class="grid-container">
-    <div class="Navbar">Navbar
+    <div class="Navbar">
+        <div class="settings pull-right" (click)="gotoSettings()">
+            <mat-icon class="icon">settings</mat-icon>
+        </div>
     </div>
     <div class="Content">
         <div class="menu-container">
@@ -44,5 +25,13 @@
     <div class="Files">Pliki
     </div>
     <div class="News">Wiadomosci
+        <div class="news-tiles">
+            <div class="news-tile" *ngFor="let msg of news;">
+                <div (click)="openInBrowser(msg.link)">
+                    <div class="title">{{msg.title}}</div>
+                    <div class="description">{{msg.description}}</div>
+                </div>
+        </div>
     </div>
+</div>
 </div>

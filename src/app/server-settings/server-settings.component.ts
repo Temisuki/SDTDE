@@ -18,7 +18,7 @@ import {
 } from "./server-settings";
 import {UtilityScripts} from "../utility/utility-scripts";
 import {ElectronService} from "ngx-electron";
-import {NavbarOptionsModel, PropertyModel} from "../utility/navbar-options.model";
+import {NavbarOptionsModel, PropertyModel} from "../utility/models/navbar-options.model";
 import {Observable} from "rxjs";
 import {debounceTime, distinctUntilChanged, map} from "rxjs/operators";
 import {COMMA, ENTER, SPACE} from "@angular/cdk/keycodes";
