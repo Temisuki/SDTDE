@@ -68,85 +68,13 @@ mat-toolbar {
   flex-grow: 1;
 }
 
-//.text {
-//  font-weight: bold;
-//  transition: .5s;
-//  transform: translateY(10px);
-//  opacity: 0;
-//  display: none;
-//}
-//
-//.icons {
-//  transition: .5s;
-//}
-//
-////.icons:hover {
-////  transform: translateY(-20px);
-////}
-//
-////.icons:hover > .text{
-////  transform: translateY(-20px);
-////  opacity: 1;
-////  font-size: 15px;
-////}
-//
-//a:hover > .icons {
-//  transform: translateY(-20px);
-//  display: none;
-//}
-//
-//a:hover > .text {
-//  display: block;
-//  opacity: 1;
-//}
-
-//.text {
-//  position: fixed;
-//  font-weight: bold;
-//  transition: .5s;
-//  transform: translateY(10px);
-//  opacity: 1;
-//}
-//
-//.icons {
-//  transition: .5s;
-//}
-//
-//.icons:hover {
-//  transform: translateY(-10px);
-//  content: 'text';
-//}
-//
-//.icons:hover > .text{
-//  transform: translateY(-10px);
-//  //display: inline;
-//  opacity: 1;
-//}
-//
-//.icons {
-//  float: left;
-//}
-//.text {
-//  display:block;
-//}
-
 .icons {
   display: block;
-  transition: .5s;
   padding-top: 5px;
   margin: auto;
 }
 
-
 .text {
   font-size: 12px;
-  opacity: 0;
-  transition: .5s;
   font-weight: bold;
-}
-
-.element:hover > .text {
-  opacity: 1;
-  font-weight: bold;
-  transform: translateY(-3px);
 }
