@@ -10,7 +10,7 @@ export class NewsService {
     constructor(private http:HttpClient) {}
 
     getNews() {
-        return this.http.get<News[]>('https://sdtde-f11f8.firebaseio.com/news.json').pipe(map(
+        return this.http.get<News[]>('https://sdtde-f11f8.firebaseio.com/news.json?limitToLast=3&orderBy="$key"').pipe(map(
             response => response)
         );
     }

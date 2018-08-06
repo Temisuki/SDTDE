@@ -24,10 +24,11 @@
     </div>
     <div class="Files">Pliki
     </div>
-    <div class="News">Wiadomosci
+    <div class="News">
+        <div class="news-text text-center">News</div>
         <div class="news-tiles">
             <div class="news-tile" *ngFor="let msg of news;">
-                <div (click)="openInBrowser(msg.link)">
+                <div class="news-link" (click)="openInBrowser(msg.link)">
                     <div class="title">{{msg.title}}</div>
                     <div class="description">{{msg.description}}</div>
                 </div>
