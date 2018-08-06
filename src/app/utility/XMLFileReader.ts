@@ -11,7 +11,7 @@ export class XMLFileReader {
         this.parser = new DOMParser();
     }
 
-    readFile(path: string, callback: (XML: any) => any) {
+    static readFile(path: string, callback: (XML: any) => any) {
         fs.readFile(path, 'utf8', (err, data) => {
             parseString(data, (err, result) => {
                 callback(result);
@@ -21,7 +21,7 @@ export class XMLFileReader {
         });
     }
 
-    saveXML(xml, path: string) {
+    static saveXML(xml, path: string) {
         const builder = new Builder();
         fs.writeFile(path, builder.buildObject(xml), () => {
             swal({
@@ -31,6 +31,12 @@ export class XMLFileReader {
                 background: '#222831',
             })
         });
+    }
+    static saveJSON(xml, path: string) {
+        console.log(xml);
+        fs.writeFile('json.json', JSON.stringify(xml),() => {
+            console.log('sukces');
+        })
     }
 
     static checkIfFileExist(path: string) {

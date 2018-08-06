@@ -78,6 +78,11 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
 
     ngOnInit(): void {
 
+        // UtilityScripts.openFileDialog(this.electronService,path => {
+        //     XMLFileReader.readFile(path, cb => {
+        //         XMLFileReader.saveJSON(cb, '');
+        //     });
+        // });
         this.inputChips.nativeElement.addEventListener('onresize', function () {
             console.log('resize');
         });
@@ -138,7 +143,7 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
     }
 
     readFile(path: string) {
-        this.xmlFileReader.readFile(path, (XML) => {
+        XMLFileReader.readFile(path, (XML) => {
             this.serverXML = XML;
             this.initialXML = (JSON.parse(JSON.stringify(XML)));
             this.fillTypeAhead();
@@ -153,7 +158,7 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
     }
 
     saveXML() {
-        this.xmlFileReader.saveXML(this.serverXML, this.XMLPath);
+        XMLFileReader.saveXML(this.serverXML, this.XMLPath);
     }
 
     getTypeOfDirective(name, value) {
