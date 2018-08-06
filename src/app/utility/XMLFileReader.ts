@@ -33,7 +33,7 @@ export class XMLFileReader {
         });
     }
 
-    static checkIfFileExist(path: string, callback: (err, stats) => any) {
-        fs.stat(path, callback);
+    static checkIfFileExist(path: string) {
+        return fs.existsSync(path);
     }
 }

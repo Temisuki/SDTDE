@@ -89,6 +89,7 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
             this.restoreXML();
         };
         this.xmlFileReader = new XMLFileReader();
+        console.log(this.editorService.getServerSettingsPath());
         if (this.editorService.getServerSettingsPath()) {
             this.XMLPath = this.editorService.getServerSettingsPath();
             this.readFile(this.XMLPath);

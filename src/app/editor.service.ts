@@ -21,12 +21,10 @@ export class EditorService {
     }
 
     setServerSettingsPath(path: string) {
-        XMLFileReader.checkIfFileExist(path, (err, stats) => {
-            if (!err) {
-                this.serverSettingsPath = path;
-                UtilityScripts.saveToLocalStorage(LocalStorageKeys.SERVERXMLPATH, path);
-            }
-        });
+        if (XMLFileReader.checkIfFileExist(path)) {
+            this.serverSettingsPath = path;
+            UtilityScripts.saveToLocalStorage(LocalStorageKeys.SERVERXMLPATH, path);
+        }
     }
 
     getServerSettingsPath(): string {
