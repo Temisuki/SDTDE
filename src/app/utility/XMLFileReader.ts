@@ -15,23 +15,11 @@ export class XMLFileReader {
         this.xotree = new ObjTree()
     }
 
-    static readFile(path: string, callback: (XML: any) => any) {
+    static readFile(path: string, callback: (XML: ServerModel) => any) {
         const xotree = new ObjTree();
-        console.log(xotree);
-
         fs.readFile(path, 'utf8', (err, data) => {
-            // xotree.attr_prefix = 'att_';
             const json = xotree.parseXML(data);
-            console.log(json);
-            let serverSettings: ServerModel = null;
-            serverSettings = <ServerModel>json;
-            console.log(serverSettings.ServerSettings.property[0]["-name"]);
-            // console.log(xotree.writeXML(json));
-            parseString(data, (err, result) => {
-                callback(result);
-                // this.saveXML(this.itemsActions.changeQuantity(result));
-                // this.editorService.itemList.next(result.items.item);
-            });
+            callback(<ServerModel>json);
         });
     }
 

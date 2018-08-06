@@ -18,13 +18,14 @@ import {
 } from "./server-settings";
 import {UtilityScripts} from "../utility/utility-scripts";
 import {ElectronService} from "ngx-electron";
-import {NavbarOptionsModel, PropertyModel} from "../utility/models/navbar-options.model";
+import {NavbarOptionsModel } from "../utility/models/navbar-options.model";
 import {Observable} from "rxjs";
 import {debounceTime, distinctUntilChanged, map} from "rxjs/operators";
 import {COMMA, ENTER, SPACE} from "@angular/cdk/keycodes";
 import {MatChipInputEvent} from "@angular/material";
 import {EditorService} from "../editor.service";
 import {FilePaths} from "../link";
+import {ServerModel} from "./server-settings.model";
 
 @Component({
     selector: 'server-settings-app',
@@ -53,12 +54,10 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
     PlayerKillingMode = PlayerKillingMode;
 
     getBooleanValue = ServerSettings.getBooleanValue;
-    serverXML = null;
+    serverXML: ServerModel = null;
     initialXML = null;
 
     padding = '66px';
-
-    lastChanges: PropertyModel[] = [];
     typeAheadArray: string[] = [];
     fakeSearchWord = true;
 
@@ -153,7 +152,7 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
 
     fillTypeAhead() {
         this.serverXML.ServerSettings.property.forEach(property => {
-            this.typeAheadArray.push(property.$.name);
+            this.typeAheadArray.push(property["-name"]);
         })
     }
 
@@ -162,7 +161,7 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
     }
 
     getTypeOfDirective(name, value) {
-        if (value === '') return TypeOfValue.String;
+        if (value === '' || !value) return TypeOfValue.String;
         if (name === 'GameDifficulty') return TypeOfValue.Difficulty;
         if (name === 'ZombiesRun') return TypeOfValue.ZombiesRun;
         if (name === 'GameWorld') return TypeOfValue.GameWorld;
@@ -183,73 +182,53 @@ export class ServerSettingsComponent implements OnInit, AfterViewInit {
     }
 
     getItemByName(name) {
-        return this.serverXML.ServerSettings.property.find(x => x.$.name === name);
+        return this.serverXML.ServerSettings.property.find(x => x["-name"] === name);
     }
 
     booleanChangeOposite(name) {
-        this.addToBack(new PropertyModel(this.getItemByName(name)));
-        this.getItemByName(name).$.value = !this.getBooleanValue(this.getItemByName(name).$.value);
+        this.getItemByName(name)["-value"] = '' + !this.getBooleanValue(this.getItemByName(name)["-value"]);
         this.ref.detectChanges();
     }
 
     setDifficulty(difficulty, name) {
-        this.addToBack(new PropertyModel(this.getItemByName(name)));
-        this.getItemByName(name).$.value = Difficulty[difficulty];
+        this.getItemByName(name)["-value"] = Difficulty[difficulty];
         this.detectChanges();
     }
 
     setDropOnDeath(dropOnDeath, name) {
-        this.addToBack(new PropertyModel(this.getItemByName(name)));
-        this.getItemByName(name).$.value = DropOnDeath[dropOnDeath];
+        this.getItemByName(name)["-value"]  = DropOnDeath[dropOnDeath];
         this.detectChanges();
     }
 
     setDropOnQuit(dropOnQuit, name) {
-        this.addToBack(new PropertyModel(this.getItemByName(name)));
-        this.getItemByName(name).$.value = DropOnQuit[dropOnQuit];
+        this.getItemByName(name)["-value"]  = DropOnQuit[dropOnQuit];
         this.detectChanges();
     }
 
     setEnemyDifficulty(enemyDifficulty, name) {
-        this.addToBack(new PropertyModel(this.getItemByName(name)));
-        this.getItemByName(name).$.value = EnemyDifficulty[enemyDifficulty];
+        this.getItemByName(name)["-value"]  = EnemyDifficulty[enemyDifficulty];
         this.detectChanges();
     }
 
     setZombiesRun(zombiesRun, name) {
-        this.addToBack(new PropertyModel(this.getItemByName(name)));
-        this.getItemByName(name).$.value = ZombiesRun[zombiesRun];
+        this.getItemByName(name)["-value"]  = ZombiesRun[zombiesRun];
         this.detectChanges();
     }
 
     setGameWorld(gameWorld, name) {
-        this.addToBack(new PropertyModel(this.getItemByName(name)));
-        this.getItemByName(name).$.value = gameWorld.match(/([A-Z]?[^A-Z]*)/g).slice(0, -1).join(' ');
+        this.getItemByName(name)["-value"]  = gameWorld.match(/([A-Z]?[^A-Z]*)/g).slice(0, -1).join(' ');
         this.detectChanges();
     }
 
     setPlayerKillingMode(playerKillingMode, name) {
-        this.addToBack(new PropertyModel(this.getItemByName(name)));
-        this.getItemByName(name).$.value = PlayerKillingMode[playerKillingMode];
+        this.getItemByName(name)["-value"] = PlayerKillingMode[playerKillingMode];
         this.detectChanges();
     }
 
     setPercentage(name, input) {
-        if (this.getItemByName(name).$.value > 100 || this.getItemByName(name).$.value < 0) {
-            this.getItemByName(name).$.value = 100;
+        if (Number(this.getItemByName(name)["-value"]) > 100 || Number(this.getItemByName(name)["-value"]) < 0) {
+            this.getItemByName(name)["-value"] = 100 + '';
             input.value = 100;
-        }
-    }
-
-    addToBack(lastProperty: PropertyModel) {
-        this.lastChanges.push(lastProperty);
-    }
-
-    backChanges() {
-        if (this.lastChanges.length > 0) {
-            this.getItemByName(this.lastChanges[this.lastChanges.length - 1].name).$.value = this.lastChanges[this.lastChanges.length - 1].value;
-            this.lastChanges.pop();
-            this.detectChanges();
         }
     }
 
