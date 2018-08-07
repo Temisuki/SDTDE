@@ -1,4 +1,12 @@
 <div class="fake-body">
     <navbar-app></navbar-app>
-    <h1>Items</h1>
+    <div class="server-table" [ngStyle]="{'padding-top': padding}">
+        <table class="table table-dark">
+            <tbody>
+            <tr *ngFor="let item of itemsXML?.items?.item; let i = index; ">
+                <td class="name">{{i+1}}.  ID: {{item['-id']}} Name: {{item['-name'] | splitWords}} {{getItemStacknumber(i)}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

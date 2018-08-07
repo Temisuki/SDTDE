@@ -13,6 +13,7 @@ export class EditorService {
     itemList = new BehaviorSubject(null);
     private gamePath = null;
     private serverSettingsPath = null;
+    private itemsSettingsPath = null;
 
     setGamePath(path: string) {
         this.gamePath = path;
@@ -33,6 +34,22 @@ export class EditorService {
         } else {
             this.serverSettingsPath = UtilityScripts.getFromLocalStorage(LocalStorageKeys.SERVERXMLPATH);
             return this.serverSettingsPath;
+        }
+    }
+
+    setItemsSettingsPath(path: string) {
+        if (XMLFileReader.checkIfFileExist(path)) {
+            this.itemsSettingsPath = path;
+            UtilityScripts.saveToLocalStorage(LocalStorageKeys.ITEMSXMLPATH, path);
+        }
+    }
+
+    getItemsSettingsPath(): string {
+        if (this.itemsSettingsPath) {
+            return this.itemsSettingsPath;
+        } else {
+            this.itemsSettingsPath = UtilityScripts.getFromLocalStorage(LocalStorageKeys.ITEMSXMLPATH);
+            return this.itemsSettingsPath;
         }
     }
 

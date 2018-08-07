@@ -3,6 +3,7 @@ import {parseString, Builder} from 'xml2js';
 import * as ObjTree from '../../../node_modules/objtree'
 import swal from 'sweetalert2'
 import {ServerModel} from "../server-settings/server-settings.model";
+import {ItemsModel} from "../items/items.model";
 
 // TODO: Enum with basic filenames
 export class XMLFileReader {
@@ -22,6 +23,17 @@ export class XMLFileReader {
             callback(<ServerModel>json);
         });
     }
+
+    static itemsReadFile(path: string, callback: (XML: ItemsModel) => any) {
+        const xotree = new ObjTree();
+        fs.readFile(path, 'utf8', (err, data) => {
+            const json = xotree.parseXML(data);
+            callback(<ItemsModel>json);
+        });
+    }
+
+
+
 
     static saveXML(xml, path: string) {
         const builder = new Builder();

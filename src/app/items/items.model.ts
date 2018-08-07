@@ -1,28 +1,19 @@
-// export class ServerSettingsInterface {
-//     'property': PropertyInterface[];
-// }
-//
-// export class PropertyInterface {
-//     '-name': string;
-//     '-value': string;
-// }
-//
-// export class ServerModel {
-//     'ServerSettings': ServerSettingsInterface;
-// }
-
 export class ItemPropertyInterface {
     '-name': string;
     '-value': string;
 }
 
-export class ItemsInterface {
+export class ItemInterface {
     '-id': string;
     '-name': string;
     'property': ItemPropertyInterface[];
 }
 
+export class ItemsInterface {
+    'item': ItemInterface[]
+}
+
 export class ItemsModel {
-    'items': ItemsInterface[];
+    'items': ItemsInterface;
 }
 
